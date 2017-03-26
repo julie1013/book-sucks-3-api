@@ -16,6 +16,7 @@ gem 'puma', '~> 3.0'
 gem 'knock', '~> 1.5'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
