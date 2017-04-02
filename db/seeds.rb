@@ -1,4 +1,4 @@
-me=User.create(email:"satan@hell.org", password:"satan")
+me=User.create(email:"satan@hell.org", password:"satan", display_name: "Satan, Lord of darkness")
 
 list1=List.create(user_id:me.id)
 
