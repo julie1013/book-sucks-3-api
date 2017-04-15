@@ -16,14 +16,34 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def add_to_list
-    render json: {
-      status: "hi"
-    }
+    id = params["id"]
+    list = current_user.list
+    entry = Read.new(book_id: id, list_id: list.id)
+    if entry.valid?
+      entry.save
+      render json: {
+        status: 'success'
+      }
+    else
+      render json: {
+        status: 'FAILURE'
+      }
+    end
   end
 
   def remove_from_list
-    render json: {
-      status: "hi"
-    }
+    id = params["id"]
+    list = current_user.list
+    entry = Read.where(book_id: id, list_id: list.id)[0]
+    if entry
+      entry.destroy
+      render json: {
+        status: 'success'
+      }
+    else
+      render json: {
+        status: 'FAILURE'
+      }
+    end
   end
 end
