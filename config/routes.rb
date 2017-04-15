@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount Knock::Engine => '/knock'
       get '/userinfo' => 'users#get_info'
+      get '/books' => 'books#index'
     end
   end
 end
