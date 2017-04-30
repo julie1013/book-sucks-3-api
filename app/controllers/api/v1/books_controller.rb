@@ -46,4 +46,25 @@ class Api::V1::BooksController < ApplicationController
       }
     end
   end
+
+  def get_reviews
+    id = params["id"]
+    reviews = Review.where(book_id: id)
+    render json: {reviews: reviews}
+  end
+
+  def add_review
+    user = current_user
+    id = params["id"]
+    body = parms["body"]
+    rating = 5
+    Review.create(
+      user_id: user.id,
+      book_id: id,
+      body: body,
+      rating: rating,
+      username: current_user.display_name
+    )
+    render json: {status: 'success!'}
+  end
 end

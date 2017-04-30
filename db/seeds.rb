@@ -18,3 +18,5 @@ book3=Book.create(title:"Twilight", author:"Stephanie Meyer",
 )
 
 read1=Read.create(list_id:list1.id, book_id:book1.id)
+
+review1=Review.create(book_id: book1.id, user_id: me.id, body: "a sensual bdsm novel for the female masses?", rating: 5)

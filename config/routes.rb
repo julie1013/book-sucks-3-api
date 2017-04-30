@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get '/getList' => 'books#get_list'
       post '/addToList' => 'books#add_to_list'
       get '/removeFromList' => 'books#remove_from_list'
+      get '/getReviews' => 'books#get_reviews'
+      post '/newReview' => 'books#add_review'
     end
   end
 end
