@@ -1,6 +1,6 @@
 class Api::V1::BooksController < ApplicationController
   before_action :authenticate_user, only: [:get_info, :get_list, :add_to_list,
-    :remove_from_list, :add_review]
+    :remove_from_list, :add_review, :delete_review]
 
   def index
     render json: {
@@ -70,6 +70,18 @@ class Api::V1::BooksController < ApplicationController
       render json: {review: review}
     else
       render json: {errors: review.errors.full_messages}
+    end
+  end
+
+  def delete_review
+    user = current_user
+    id = params["id"]
+    review = Review.find(id)
+    if review && review.user.id == current_user.id
+      review.destroy
+      render json: {deleted: review.id}
+    else
+      render json: {error: 'review not found or is not yours'}
     end
   end
 end
