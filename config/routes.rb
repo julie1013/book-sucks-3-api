@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get '/getReviews' => 'books#get_reviews'
       get '/deleteYourReview' => 'books#delete_review'
       post '/addReview' => 'books#add_review'
+      post '/editYourReview' => 'books#edit_review'
     end
   end
 end
