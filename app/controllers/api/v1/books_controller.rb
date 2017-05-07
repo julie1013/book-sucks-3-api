@@ -1,6 +1,6 @@
 class Api::V1::BooksController < ApplicationController
   before_action :authenticate_user, only: [:get_info, :get_list, :add_to_list,
-    :remove_from_list]
+    :remove_from_list, :add_review]
 
   def index
     render json: {
@@ -56,15 +56,20 @@ class Api::V1::BooksController < ApplicationController
   def add_review
     user = current_user
     id = params["id"]
-    body = parms["body"]
+    body = params["body"]
     rating = 5
-    Review.create(
+    review = Review.new(
       user_id: user.id,
       book_id: id,
       body: body,
       rating: rating,
       username: current_user.display_name
     )
-    render json: {status: 'success!'}
+    if review.valid?
+      review.save
+      render json: {review: review}
+    else
+      render json: {errors: review.errors.full_messages}
+    end
   end
 end

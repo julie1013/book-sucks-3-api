@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170430183811) do
     t.integer "book_id"
     t.text    "body"
     t.integer "rating"
+    t.text    "username"
   end
 
   create_table "users", force: :cascade do |t|
