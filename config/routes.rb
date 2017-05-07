@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get '/removeFromList' => 'books#remove_from_list'
       get '/getReviews' => 'books#get_reviews'
       get '/deleteYourReview' => 'books#delete_review'
+      post '/signup' => 'users#signup'
       post '/addReview' => 'books#add_review'
       post '/editYourReview' => 'books#edit_review'
     end

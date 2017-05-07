@@ -11,4 +11,17 @@ class Api::V1::UsersController < ApplicationController
       }
     }
   end
+
+  def signup
+    email = params["email"]
+    password = params["password"]
+    display_name = params["displayName"]
+    user = User.new(email: email, password: password, display_name: display_name)
+    if user.valid?
+      user.save
+      render json: {status: 'success!'}
+    else
+      render json: {errors: user.errors.full_messages}
+    end
+  end
 end
